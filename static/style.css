@@ -1,0 +1,156 @@
+body{
+    margin: 0;
+}
+
+.search{
+    width: 45%;
+}
+
+.background{
+    height: 400px;
+    width: 100%;
+}
+
+.navbar{
+    background-color: transparent;
+    box-shadow: 0px 1px 20px #eaeaea;
+}
+
+.navbar.solid{
+    transition: background-color 1s ease 0s;
+}
+
+.cards{
+    width: 286px;
+    height: 343.46px;
+}
+
+#logo{
+    width: 125px;
+}
+
+.navBackground{
+    background-color: rgb(175, 178, 178, 0.7);
+}
+
+.navbarIcon , .nav-item {
+    color:white !important ;
+}
+
+.fa-solid:hover , .fa-regular:hover{
+    scale: 1.1;
+}
+
+footer{
+    background-color: #232F3E;
+    color: white;
+   
+}
+
+.list{
+    list-style: none;
+}
+
+.divider{
+    border-bottom: 2px solid white;
+}
+
+.list a{
+    color: rgba(245, 245, 245, 0.744);
+    text-decoration: none;
+}
+
+.list a:hover {
+    text-decoration: underline;
+    text-decoration-color: rgba(245, 245, 245, 0.744);
+    color: rgba(245, 245, 245, 0.744);
+}
+
+.top{
+    color: rgba(245, 245, 245, 0.744);
+    text-decoration: none;
+}
+
+.top:hover{
+    text-decoration: underline;
+    text-decoration-color: rgba(245, 245, 245, 0.744);
+    color: rgba(245, 245, 245, 0.744)
+}
+
+
+.fa-brands{
+    font-size: 25px;
+    color: black;
+    margin: 3px;
+}
+
+
+.contact{
+    margin-left: 55px;
+  
+}
+
+.checked{
+    color: orange;
+}
+
+.navBackground2{
+    height: 250px;
+}
+
+.menuButton{
+    color: white;
+}
+
+.price{
+    color: brown;
+    padding-left: 50px;
+
+}
+
+/* Cart */
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.cart-row{
+	display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+
+}
+
+.row-image{
+	width: 100px;
+    height: 100px;
+}
+
+
+@media screen and (max-width:770px){
+    .navBackground2{
+        height: 550px; 
+    }
+    #categories{
+        display: none;
+    }
+    .search{
+        width: 90%;
+    }
+}
+
+
+@media screen and (max-width:1200px){
+    .login, .signUp, .getInTouch, .contact{
+        margin: 0 !important;
+        margin-top: 70px !important;
+        
+    }
+
+
+}
+

@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+    {% block content %}
+    <!-- content -->
+
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-xl-2 accordion accordion-flush" id="accordionFlushExample">
+                {% include "includes/categories.html" %}
+            </div>
+
+
+            <div class="col-xl-6 ml-4 getInTouch">
+                <h3>Get in touch</h3>
+                <form action="mailto: info@supersale.com">
+                    Username:<br>
+                    <input type="text" name="username" 
+                           placeholder="Enter Username" class="form-control mt-2" ><br>
+                    Message:<br>
+                    <input type="textarea" name="message" 
+                        rows="10" cols="30" 
+                        placeholder="Enter your message" class="form-control mt-2">
+                    <br><br>
+                    <input type="submit" value="Send Email" class="btn btn-secondary mt-2">
+                </form>
+            </div>
+
+            <div class="col-xl-2 contact">
+                <h3>Contact info</h3> 
+                <p>935 W. Webster Ave New Streets Chicago</p>
+                <p>60614 Newyork USA</p>
+                <p>Mobile: +1-714-252-0034</p>
+                <p>e-mail: info@supersale.com</p> <br> 
+
+                <h3>Social Network</h3>
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-twitter"></i></a>
+                <a href=""><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+  
+
+    <!-- footer -->
+    {% include "includes/footer.html" %}
+
+    {% endblock content %}
+ 

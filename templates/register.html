@@ -1,0 +1,33 @@
+
+    {% extends 'index.html' %}
+    {% load static %}
+    {% block content %}
+    
+
+
+    <!-- content -->
+
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-xl-2 accordion accordion-flush" id="accordionFlushExample">
+                {% include "includes/categories.html" %}
+            </div>
+
+
+            
+            <div class="col-xl-9 signUp text-center">
+                <h3>Register</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Register" class="btn btn-primary mt-2"> <br>
+                    
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    {% endblock content %}

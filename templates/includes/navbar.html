@@ -1,0 +1,54 @@
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-light fixed-top">
+    <div class="container-fluid">
+        <a href="{% url 'index' %}"><img id="logo" src="{% static 'images/logo.png' %}" alt="logo" width="175px"></a>
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex search" role="search">
+                <input class="form-control me-2 " type="search" value="{{search}}" name="search" placeholder="What are you dreaming of?"
+                    aria-label="Search">
+                <button class="btn btn-light" type="submit">Search</button>
+            </form>          
+            <div class="navbar-nav m-auto nav-item">
+                <a class="nav-item nav-link" href="{% url 'index' %}"><i class="fa-solid fa-house navbarIcon"></i> Home</a>
+                <a class="nav-item nav-link" href="/cart/"><i class="fa-solid fa-cart-shopping navbarIcon" method="POST"></i>
+                    Cart</a>
+                <a class="nav-item nav-link" href="/contactUs/"><i class="fa-regular fa-envelope navbarIcon"></i>
+                    Contact Us</a>
+
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                    <a class="nav-item nav-link" href="/create/"><i class="fa-solid fa-right-to-bracket navbarIcon"></i>
+                    Create Product</a>
+                    <a class="nav-item nav-link" href="/myProduct/"><i class="fa-solid fa-right-to-bracket navbarIcon"></i>
+                        My Product</a>
+                    {% endif %}
+                    <a class="nav-item nav-link" href="/logout/"><i class="fa-solid fa-right-to-bracket navbarIcon"></i>
+                        Logout</a>               
+                                   
+                {% else %}
+                    <a class="nav-item nav-link" href="/login/"><i class="fa-solid fa-right-to-bracket navbarIcon"></i>
+                    Login</a>
+                    <a class="nav-item nav-link" href="/register/"><i class="fa-solid fa-right-to-bracket navbarIcon"></i>
+                        Register</a>
+                {% endif %}
+                
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="nav-item nav-link ml-5"> {{request.user}} </div>
+        {% endif %}
+    </div>
+</nav>
+
+    <!-- slider -->
+
+    <div class="carousel" id="mainSlide">
+        <div class="carousel-inner">
+            <img class="d-block background  navBackground2" src="{% static 'images/background2.jpg' %}" alt="background">
+        </div>
+    </div>

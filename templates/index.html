@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Sale</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/05e7732d1c.js" crossorigin="anonymous"></script>
+    <!-- Jquery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">   
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script> 
+        
+        <script type="text/javascript">
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            function uuidv4() {
+              return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+              });
+            }
+            let device = getCookie('device')
+            if (device == null || device == undefined){
+                device = uuidv4()
+            }
+            document.cookie ='device=' + device + ";domain=;path=/"
+        </script>
+        
+</head>
+
+<body>
+
+    {% include "includes/navbar.html" %}
+
+
+    
+    {% block content %}
+
+    <!-- content -->
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-xl-2 accordion accordion-flush" id="categories">
+                {% include "includes/categories.html" %}
+            </div>
+
+            <div class="col-xl-10 ml-4">
+                <div class="row">
+                    {% include "includes/alert.html" %}
+                </div>
+                <div class="row">
+                    <h3 style="text-align: center;">Features Items</h3>
+                </div>
+                <div class="row mt-2">
+               
+                        {% for products in products %}    
+                    <div class="col-xl-3 col-md-6 mt-3"  style="width: 18rem">
+                        <div class="card">
+                                                 
+                           <a href="{% url 'productDetail' products.id %}"> <img src="{{products.picture.url}}" class="card-img-top cards" alt={{product.id}}> </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{products.name}} <span class="price">$ {{products.price}}</span></h5>
+                                <p class="card-text">{{products.detail|slice:":27"}} ...</p>
+                                <p class="card-text">{{products.category}}</p>
+                                {% if products.subCategory %}
+                                {% for i in products.subCategory.all %}
+                                     <small class="card-text">{{ i.subCategory }}</small>
+                                {% endfor %}
+                                {% else %}
+                                {% endif %}                                      
+                                 <br>
+                                <a href="{% url 'productDetail' products.id %}" class="btn btn-dark mt-1"><i class="fa-solid fa-magnifying-glass"></i> View
+                                    product</a>
+                            </div>
+                           
+                        </div>
+                    </div>
+                        {% endfor %}
+                   
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="container slide1">
+        <div class="row mt-4 m-auto">
+            <h2 style="text-align: center;">Best Choices For You</h2>
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for photo in bottomPhotos %}
+                         <div 
+                         {% if forloop.first %}
+                             class="carousel-item active"
+                         {% else %}
+                             class="carousel-item"
+                         {% endif %}
+                         >
+                        <a href="{% url 'productDetail' photo.id %}">
+                        <img src="{{photo.picture.url}}" class="d-block w-100 rounded-pill" style="height:500px"
+                                alt="slider1">
+                                </a>
+                    </div>
+                    {% endfor %}
+                   
+                    
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- footer -->
+   
+    {% endblock content %}
+
+    {% include "includes/footer.html" %}
+
+    <script>
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 90) {
+                    $('.navbar').addClass('solid navBackground');
+                } else {
+                    $('.navbar').removeClass('solid navBackground')
+                }
+            });
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>
